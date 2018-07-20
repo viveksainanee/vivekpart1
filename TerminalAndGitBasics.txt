@@ -1,0 +1,308 @@
+Vivek Sainanee, 7.11.18
+
+// Terminal Navigation
+
+1) 'cd /' takes you to your root directory.
+'cd ~' takes you to your home directory.
+Your home directory is within your root directory.
+
+2) cd
+
+3) 
+absolute path: when we specify a path starting from the root directory
+relative path: when we specify a path relative to where i am right now
+
+// Terminal Files
+
+1) touch name.txt
+2) mv name.txt rename.txt
+-the mv command looks like it rewrites the path, allowing renaming
+3) cp rename.txt copy.txt
+4) rm copy.txt
+5) mkdir questions
+6) cd questions
+7) touch first.txt
+8) touch second.txt
+9a) cd ..
+9b) cp -r questions questions_copy
+10) -r is a flag. If the source file designates a directory, 
+cp copies the directory and the entire subtree connected at that point
+11) rm -rf questions
+rm -rf questions_copy
+
+// Terminal Basics Exercises
+Part One
+1) mkdir first
+2) cd first
+3) touch person.txt
+4) mv person.txt another.txt
+5) cp another.txt copy.txt
+6) rm copy.txt
+7) cp -r first second
+8) rm -rf second
+
+Part Two
+1) man shows the manual for that command. You scroll with cntrl+D scrolls have a page, cntrl+B goes back a page, cntrl+U to go back half a page, exit with 'q'
+2) the -l flag for the ls command shows the 'long' or detailed format of the list
+3) curl https://www.google.com > google.html 
+4) less google.html
+5) less -p hplogo google.html
+6) option left and option right
+7) fn + shift + right arrow (end of line) or control e
+8) fn + shift + left arrow (beginning of line)  or control a
+9) control w deletes a word 
+10) The shell is the program that actually processes the commands and returns output, while
+the terminal is just the wrapper program that runs the shell (like the UI)
+11) 
+absolute path: when we specify a path starting from the root directory
+12)
+relative path: when we specify a path relative to where i am right now
+13) a flag is like an option that can be passed with a command to specify specific information
+examples of flags include mv -r directory, where -r is the flag
+ls -l, which shows the long form of each item on the list
+ls -a, which shows all the files, including hidden files
+
+14) rm -f attempts to remove the files without prompting for confirmation, regardless of the files permissions
+rm -r attempts to remove the file hierarchy rooted in each file argument
+
+
+// Permissions, Redirection, and Piping
+Part One
+1) touch restricted.txt
+2) chmod 600 restricted.txt
+3) chmod ugo+rwx restricted.txt OR chmod 777 restricted.txt
+4) mkdir secret_files
+touch first_secret.txt
+mkdir classified
+touch super_secret.txt
+5) chmod -R 440 secret_files
+6) ln restricted.txt hard_link
+7) ln -s secret_files/classified classified_link
+
+Part Two
+1) sort vegetables.txt
+2) wc -l vegetables.txt
+3) sort vegetables.txt | uniq > vegetables_sorted.txt
+4) tail -n 3 vegetables.txt > last_three.txt
+5) cat vegetables.txt | grep Broccoli | wc -l
+
+
+// Intermediate Terminal Exercises
+Part 1
+1) export FIRST_NAME=vivek
+2) echo $FIRST_NAME
+3) echo $PATH
+4) The path variable finds programs to execute. for example, any commands like ls need to be specified within the path
+5) Environment variables allow you to save information in a dynamic way and access it later at your convenience.
+6) You save environment variables by modifying the shell configuration in your home directory.
+You open up the .zshrc (since I'm using oh-my-zsh) and you have to write the definition of the environment variable
+in the .zshrc file.
+7) A process is a program that is currently running on your computer
+8) ps ax
+9) PID is the process ID
+10) you use the PID and type 'kill PID' where PID is that number. kill -9 overrides warnings
+11) kill -9 is a non-ignorable kill (like a force quit)
+12) -i
+13) -B
+14) -C
+15) -A
+16) -w
+17) -n
+
+Part 2
+1) find ~/Desktop -name 'learn'
+2) find ~/Desktop -name "[n].*"
+3) find ~/Desktop =name "*.txt"
+4) find ~/Desktop/views "*data*"
+5) grep -wc 'Elie' instructors.txt
+6) grep -w 'P.*' instructors.txt
+7) grep -inw 'z.*' instructors.txt
+
+
+// Git
+basic git commands
+1) mkdir learn_git
+2) cd learn_git
+3) touch first.txt
+4) git init
+5) git add .
+6) git commit -m 'adding first.txt'
+7) git log
+8) touch second.txt
+9) git add .
+10) git commit -m 'adding second.txt'
+11) rm first.txt
+12) git add .
+13) git commit -m 'removing first.txt'
+14) git log
+
+// Git Basic Exercises
+1) mkdir learn_git_again
+2) cd learn_git_again
+3) touch third.txt
+4) git init
+5) git add .
+6) git commit -m 'adding third.txt'
+7) git log
+8) touch fourth.txt
+9) git add .
+10) git commit -m 'adding fourth.txt'
+11) rm third.txt
+12) git add .
+13) git commit -m 'removing third.txt'
+14) git log
+15) git config --global --replace-all core.pager cat
+16) cat ~/.gitconfig
+
+// Checkout and Reset
+1) mkdir destruction
+2) cd destruction
+3) git init
+4) touch done.txt
+5) git clean -df
+6) touch stage_me.txt
+7) git add stage_me.txt
+8) git rm --cached stage_me.txt
+9) git add stage_me.txt
+10) git reset --hard
+11) touch commit_me.txt
+12) git add .
+13) git commit -m 'adding commit_me.txt'
+14) touch second.txt
+15) git add second.txt
+16) git commit -m 'adding commit_me.txt'
+17) git log --online
+18) git reset --mixed d689497
+19) git add second.txt
+20) git commit -m 'trying to commit again'
+21) git reset --soft d689497
+22) git commit -m 'trying to commit again and again'
+23) git reset --hard d689497
+24) done irl
+
+//Branching
+1) mkdir branch_time
+2) cd branch_time
+3) git init
+4) touch first.txt
+git add .
+git commit -m '1'
+5) git checkout -b amazing_feature
+6) touch best.txt
+7) git add .
+8) git commit -m 'added best.txt'
+9) git checkout master 
+10) git merge amazing_feature
+11) git branch -D amazing_feature
+
+
+//Branching and Merging Exercises
+Part 1
+
+What does git clean do?
+git clean removes files that are untracked or unmerged from the working directory
+
+What do the -d and -f flags for git clean do?
+the -d flag removes untracked directories in addition to untracked files
+the -f is a force removal. git may refuse to delete directories with .git without a -f flag
+
+What git command creates a branch?
+git checkout -b branchname
+
+What is the difference between a fast-forward and recursive merge?
+a fast-forward merge speeds the merging up branch up to the latest branch. (only if there were no commits during the time of the new branch)
+a recursive merge is one in which different commits happen on two branches and
+git cannot easily determine what order the commits happened in, creating a merge conflict.
+
+What git command changes to another branch?
+git checkout branchname
+
+How do you remove modified or deleted files from the working directory?
+If a file has not been ADDED then you use git clean -df
+
+If a file has already been ADDED to the staging area then you do git reset --hard
+
+If it's before they have been staged, you can use git checkout
+
+
+What git command deletes a branch?
+git branch -D branchname
+
+What does the git diff command do?
+It shows the difference between two commits
+
+How do you remove files from the staging area?
+git reset --hard or git rm --cached filename
+
+How do merge conflicts happen?
+if there is a checked out branch that has changes while either the master or any other branch also
+has changes. When merged git will look at the timestamps will ask you to resolve the conflicts when it sees code differences
+
+Part Two
+merg git init
+Initialized empty Git repository in /Users/viveksainanee/Desktop/merg/.git/
+➜  merg git:(master) touch first.txt
+➜  merg git:(master) ✗ git add.
+git: 'add.' is not a git command. See 'git --help'.
+
+The most similar command is
+	add
+➜  merg git:(master) ✗ git add .
+➜  merg git:(master) ✗ git commit -m 'adding first'
+[master (root-commit) a9dee14] adding first
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 first.txt
+➜  merg git:(master) git checkout -b secondbranch
+Switched to a new branch 'secondbranch'
+➜  merg git:(secondbranch) echo sometext > first.txt
+➜  merg git:(secondbranch) ✗ git add .
+➜  merg git:(secondbranch) ✗ git commit -m 'adding some text in the second branch'
+[secondbranch e121a4f] adding some text in the second branch
+ 1 file changed, 1 insertion(+)
+➜  merg git:(secondbranch) git checkout master
+Switched to branch 'master'
+➜  merg git:(master) echo othertext > first.txt
+➜  merg git:(master) ✗ git add .
+➜  merg git:(master) ✗ git commit -m 'added other text to the master branch'
+[master 49e35e3] added other text to the master branch
+ 1 file changed, 1 insertion(+)
+➜  merg git:(master) git merge secondbranch
+Auto-merging first.txt
+CONFLICT (content): Merge conflict in first.txt
+Automatic merge failed; fix conflicts and then commit the result.
+➜  merg git:(master) ✗ git add .
+➜  merg git:(master) git commit -m 'resolved conflict'
+[master 402328a] resolved conflict
+➜  merg git:(master) git merge secondbranch
+Already up to date.
+
+
+// Github Exercises
+
+One and Two
+ git_practice git init
+Initialized empty Git repository in /Users/viveksainanee/Desktop/git_practice/.git/
+➜  git_practice git:(master) ✗ git add .
+➜  git_practice git:(master) ✗ git commit -m 'first commit'
+[master (root-commit) dc280d7] first commit
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 first.txt
+ create mode 100644 second.txt
+➜  git_practice git:(master) echo "# gitp" >> README.md
+➜  git_practice git:(master) ✗ git add .   
+➜  git_practice git:(master) ✗ git commit -m 'adding readme'
+[master 16a5fae] adding readme
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+➜  git_practice git:(master) git remote add origin git@github.com:viveksainanee/gitp.git
+➜  git_practice git:(master) git push -u origin master
+
+
+
+3-5 shown here: 
+https://github.com/viveksainanee/git_practice
+https://github.com/rithmschool/git_practice/pull/85
+
+
+Part Two:
+echo "Jeremy Bowers" | $(command -v md5 || command -v md5sum) | grep -qif /dev/stdin encoded && echo CORRECT\! GREAT WORK, GUMSHOE. || echo SORRY, TRY AGAIN.
